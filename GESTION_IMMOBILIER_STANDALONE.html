@@ -92,7 +92,7 @@
         }
 
         .btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
@@ -103,8 +103,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
-            width: 100%;
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -153,10 +153,47 @@
             font-size: 13px;
         }
 
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            width: auto;
+            min-width: 200px;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed var(--primary);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .cta-section h3 {
+            color: var(--primary);
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+
         .sidebar-actions {
             display: flex;
             flex-direction: column;
             gap: 8px;
+        }
+
+        .sidebar-actions .btn {
+            width: 100%;
         }
 
         .sidebar-content {
@@ -994,6 +1031,7 @@
                             <option value="électricité">Électricité</option>
                             <option value="gaz">Gaz</option>
                             <option value="eau">Eau</option>
+                            <option value="internet">Internet</option>
                             <option value="taxe">Taxe</option>
                             <option value="impôt">Impôt</option>
                             <option value="autre">Autre</option>
@@ -1074,6 +1112,7 @@
                     électricité: {},
                     gaz: {},
                     eau: {},
+                    internet: {},
                     taxe: {},
                     impôt: {}
                 },
@@ -1197,18 +1236,23 @@
 
                 <!-- Finances Tab -->
                 <div id="finances-tab" class="tab-content">
+                    <div class="cta-section">
+                        <h3>💰 Ajouter une facture ou un revenu</h3>
+                        <p>Suivez vos revenus de loyers et vos dépenses (factures, taxes, etc.)</p>
+                        <button class="btn btn-success btn-lg" onclick="showAddTransactionModal()">
+                            <span>➕</span>
+                            <span>Ajouter une Transaction</span>
+                        </button>
+                    </div>
+
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">💳 Transactions</h3>
-                            <button class="btn btn-success btn-icon" onclick="showAddTransactionModal()">
-                                <span>➕</span>
-                                <span>Ajouter</span>
-                            </button>
+                            <h3 class="card-title">💳 Historique des Transactions</h3>
                         </div>
                         ${renderTransactions(property)}
                     </div>
 
-                    <div style="margin-top: 24px;" class="grid grid-2">
+                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
                         <button class="btn btn-secondary" onclick="exportPropertyToCSV(${property.id})">
                             <span>📄</span>
                             <span>Exporter en CSV</span>
@@ -1241,6 +1285,7 @@
                 'électricité': { icon: '⚡', name: 'Électricité', subtitle: 'Fournisseur d\'énergie' },
                 'gaz': { icon: '🔥', name: 'Gaz', subtitle: 'Chauffage et eau chaude' },
                 'eau': { icon: '💧', name: 'Eau', subtitle: 'Distribution d\'eau' },
+                'internet': { icon: '🌐', name: 'Internet', subtitle: 'Fournisseur d\'accès' },
                 'taxe': { icon: '🏛️', name: 'Taxe', subtitle: 'Taxes locales' },
                 'impôt': { icon: '📊', name: 'Impôt', subtitle: 'Impôts fonciers' }
             };
@@ -1341,6 +1386,7 @@
                 'électricité': 'Électricité',
                 'gaz': 'Gaz',
                 'eau': 'Eau',
+                'internet': 'Internet',
                 'taxe': 'Taxe',
                 'impôt': 'Impôt'
             };
