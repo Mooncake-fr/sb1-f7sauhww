@@ -11,608 +11,1029 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --radius-lg: 16px;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
             overflow: hidden;
         }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            opacity: 0.9;
-            font-size: 1.1em;
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            min-height: 600px;
-        }
-
+        /* Sidebar */
         .sidebar {
-            background: #f8f9fa;
-            padding: 20px;
-            border-right: 2px solid #e9ecef;
+            width: 320px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            padding: 32px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .logo-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
         }
 
         .btn {
-            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             padding: 12px 20px;
             border: none;
-            border-radius: 10px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s;
+            border-radius: var(--radius);
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            text-decoration: none;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary);
             color: white;
+            box-shadow: var(--shadow-sm);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: var(--primary-dark);
+            box-shadow: var(--shadow);
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: #6c757d;
-            color: white;
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
         }
 
         .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-            padding: 8px 15px;
-            font-size: 0.9em;
-        }
-
-        .btn-danger:hover {
-            background: #c82333;
+            background: var(--background);
+            border-color: var(--secondary);
         }
 
         .btn-success {
-            background: #28a745;
+            background: var(--success);
             color: white;
         }
 
         .btn-success:hover {
-            background: #218838;
+            background: #059669;
         }
 
-        .btn-warning {
-            background: #ffc107;
-            color: #212529;
-        }
-
-        .btn-warning:hover {
-            background: #e0a800;
-        }
-
-        .property-list {
-            margin-top: 20px;
-        }
-
-        .property-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .property-item:hover {
-            border-color: #667eea;
-            transform: translateX(5px);
-        }
-
-        .property-item.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn-danger {
+            background: var(--danger);
             color: white;
         }
 
-        .property-item h3 {
-            margin-bottom: 5px;
+        .btn-danger:hover {
+            background: #dc2626;
         }
 
-        .property-item p {
-            font-size: 0.9em;
-            opacity: 0.8;
+        .btn-icon {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .sidebar-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding: 0 8px;
+        }
+
+        .property-card {
+            background: var(--surface);
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .property-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+            transform: translateX(4px);
+        }
+
+        .property-card.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .property-card.active .property-type,
+        .property-card.active .property-status {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .property-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .property-meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .property-type,
+        .property-status {
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: var(--background);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .property-card.active .property-type,
+        .property-card.active .property-status {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .topbar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar-title h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .topbar-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 12px;
         }
 
         .content-area {
-            padding: 30px;
+            flex: 1;
             overflow-y: auto;
+            padding: 32px;
         }
 
         .welcome-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
             text-align: center;
-            padding: 100px 20px;
-            color: #6c757d;
+            color: var(--text-secondary);
+        }
+
+        .welcome-icon {
+            width: 120px;
+            height: 120px;
+            background: var(--background);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            margin-bottom: 24px;
         }
 
         .welcome-screen h2 {
-            font-size: 2em;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .welcome-screen p {
+            font-size: 16px;
+            max-width: 400px;
+        }
+
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 32px;
+            background: var(--background);
+            padding: 4px;
+            border-radius: var(--radius);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            border-radius: calc(var(--radius) - 4px);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .tab.active {
+            background: var(--surface);
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1200px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .stat-card.success::before {
+            background: linear-gradient(90deg, var(--success), #34d399);
+        }
+
+        .stat-card.danger::before {
+            background: linear-gradient(90deg, var(--danger), #f87171);
+        }
+
+        .stat-card.warning::before {
+            background: linear-gradient(90deg, var(--warning), #fbbf24);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-change {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Category Card */
+        .category-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .category-card:hover {
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 20px;
         }
 
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--background) 0%, #e2e8f0 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .category-info {
+            flex: 1;
+        }
+
+        .category-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .category-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: var(--background);
+            border-radius: var(--radius);
+        }
+
+        .info-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .password-field {
+            font-family: monospace;
+        }
+
+        .password-toggle {
+            font-size: 12px;
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: underline;
+            margin-left: 8px;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Table */
+        .table-container {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--background);
+        }
+
+        th {
+            padding: 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+        }
+
+        td {
+            padding: 16px;
+            border-top: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: var(--background);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .amount-positive {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .amount-negative {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--background);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        /* Form */
         .form-group {
             margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            font-size: 14px;
             font-weight: 600;
-            color: #495057;
+            color: var(--text-primary);
+            margin-bottom: 8px;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 14px;
+            color: var(--text-primary);
+            background: var(--surface);
+            transition: all 0.2s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .modal.active {
+        .form-actions {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            gap: 12px;
+            margin-top: 24px;
         }
 
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        .modal-header h2 {
-            color: #667eea;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 2em;
-            cursor: pointer;
-            color: #6c757d;
-            padding: 0;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-
-        .close-btn:hover {
-            background: #f8f9fa;
-            color: #dc3545;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .category-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            padding: 20px;
-            border: 2px solid #dee2e6;
-        }
-
-        .category-card h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .category-info {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .category-info p {
-            margin: 8px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .category-info strong {
-            color: #495057;
-        }
-
-        .password-toggle {
-            cursor: pointer;
-            color: #667eea;
-            font-size: 0.9em;
-            text-decoration: underline;
-        }
-
-        .finances-section {
-            margin-top: 30px;
-        }
-
-        .finances-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .stat-card h4 {
-            font-size: 0.9em;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-
-        .stat-card .amount {
-            font-size: 2em;
-            font-weight: bold;
-        }
-
-        .transactions-table {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid #e9ecef;
-        }
-
-        .transactions-table table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .transactions-table th {
-            background: #f8f9fa;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            color: #495057;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        .transactions-table td {
-            padding: 15px;
-            border-bottom: 1px solid #f8f9fa;
-        }
-
-        .transactions-table tr:hover {
-            background: #f8f9fa;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        .badge-revenue {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .badge-expense {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .icon {
-            width: 24px;
-            height: 24px;
-            display: inline-block;
-        }
-
-        .export-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-
-        .export-section h3 {
-            margin-bottom: 15px;
-            color: #667eea;
+        .form-actions .btn {
+            flex: 1;
         }
 
         .empty-state {
             text-align: center;
-            padding: 40px;
-            color: #6c757d;
+            padding: 64px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
         }
 
         .empty-state p {
-            margin-top: 10px;
-            font-size: 1.1em;
+            font-size: 14px;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
+            .app-container {
+                flex-direction: column;
             }
 
             .sidebar {
-                border-right: none;
-                border-bottom: 2px solid #e9ecef;
+                width: 100%;
+                max-height: 50vh;
             }
 
-            .categories-grid {
-                grid-template-columns: 1fr;
+            .content-area {
+                padding: 20px;
             }
+
+            .topbar {
+                padding: 16px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .topbar-actions {
+                width: 100%;
+            }
+
+            .btn {
+                font-size: 13px;
+                padding: 10px 16px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🏠 Gestion de Propriétés</h1>
-            <p>Gérez vos appartements et maisons en toute simplicité</p>
-        </header>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🏠</div>
+                    <div class="logo-text">
+                        <h1>PropertyHub</h1>
+                        <p>Gestion immobilière</p>
+                    </div>
+                </div>
+                <div class="sidebar-actions">
+                    <button class="btn btn-primary" onclick="showAddPropertyModal()">
+                        <span>➕</span>
+                        <span>Nouvelle Propriété</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportData()">
+                        <span>💾</span>
+                        <span>Sauvegarder</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="importData()">
+                        <span>📂</span>
+                        <span>Importer</span>
+                    </button>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="section-title">Mes Propriétés</div>
+                <div id="propertyList">
+                    <!-- Properties will be rendered here -->
+                </div>
+            </div>
+        </aside>
 
-        <div class="main-content">
-            <div class="sidebar">
-                <button class="btn btn-primary" onclick="showAddPropertyModal()">
-                    ➕ Ajouter une Propriété
-                </button>
-                <button class="btn btn-secondary" onclick="exportData()">
-                    💾 Sauvegarder les Données
-                </button>
-                <button class="btn btn-warning" onclick="importData()">
-                    📂 Importer les Données
-                </button>
-
-                <div class="property-list" id="propertyList">
-                    <!-- Liste des propriétés sera générée ici -->
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="topbar">
+                <div class="topbar-title">
+                    <h2 id="currentPropertyName">Tableau de bord</h2>
+                    <div class="topbar-subtitle" id="currentPropertySubtitle">Sélectionnez une propriété</div>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn btn-danger btn-icon" id="deleteBtn" style="display: none;" onclick="deleteCurrentProperty()">
+                        <span>🗑️</span>
+                        <span>Supprimer</span>
+                    </button>
                 </div>
             </div>
 
             <div class="content-area" id="contentArea">
                 <div class="welcome-screen">
-                    <h2>👋 Bienvenue !</h2>
-                    <p>Commencez par ajouter une propriété pour gérer vos logements</p>
+                    <div class="welcome-icon">🏠</div>
+                    <h2>Bienvenue sur PropertyHub</h2>
+                    <p>Commencez par ajouter votre première propriété pour gérer vos biens immobiliers en toute simplicité</p>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 
-    <!-- Modal Ajout Propriété -->
+    <!-- Add Property Modal -->
     <div id="addPropertyModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Ajouter une Propriété</h2>
-                <button class="close-btn" onclick="closeModal('addPropertyModal')">&times;</button>
+                <button class="close-btn" onclick="closeModal('addPropertyModal')">✕</button>
             </div>
-            <form id="addPropertyForm" onsubmit="addProperty(event)">
-                <div class="form-group">
-                    <label>Nom de la Propriété *</label>
-                    <input type="text" id="propertyName" required placeholder="Ex: Appartement Paris 15ème">
-                </div>
-                <div class="form-group">
-                    <label>Type *</label>
-                    <select id="propertyType" required>
-                        <option value="appartement">Appartement</option>
-                        <option value="maison">Maison</option>
-                        <option value="studio">Studio</option>
-                        <option value="autre">Autre</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Adresse</label>
-                    <textarea id="propertyAddress" rows="3" placeholder="Adresse complète"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Statut</label>
-                    <select id="propertyStatus">
-                        <option value="loué">Loué</option>
-                        <option value="disponible">Disponible</option>
-                        <option value="propriétaire">Propriétaire (non loué)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Loyer Mensuel (€)</label>
-                    <input type="number" id="propertyRent" placeholder="0" step="0.01">
-                </div>
-                <div class="action-buttons">
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeModal('addPropertyModal')">Annuler</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <form id="addPropertyForm" onsubmit="addProperty(event)">
+                    <div class="form-group">
+                        <label>Nom de la propriété *</label>
+                        <input type="text" id="propertyName" required placeholder="Ex: Appartement 15ème">
+                    </div>
+                    <div class="form-group">
+                        <label>Type *</label>
+                        <select id="propertyType" required>
+                            <option value="appartement">Appartement</option>
+                            <option value="maison">Maison</option>
+                            <option value="studio">Studio</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Adresse</label>
+                        <textarea id="propertyAddress" rows="2" placeholder="Adresse complète"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Statut</label>
+                        <select id="propertyStatus">
+                            <option value="loué">Loué</option>
+                            <option value="disponible">Disponible</option>
+                            <option value="propriétaire">Occupé par le propriétaire</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Loyer mensuel (€)</label>
+                        <input type="number" id="propertyRent" placeholder="0.00" step="0.01">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('addPropertyModal')">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <!-- Modal Édition Catégorie -->
+    <!-- Edit Category Modal -->
     <div id="editCategoryModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="editCategoryTitle">Modifier la Catégorie</h2>
-                <button class="close-btn" onclick="closeModal('editCategoryModal')">&times;</button>
+                <h2 id="editCategoryTitle">Modifier la catégorie</h2>
+                <button class="close-btn" onclick="closeModal('editCategoryModal')">✕</button>
             </div>
-            <form id="editCategoryForm" onsubmit="saveCategory(event)">
-                <div class="form-group">
-                    <label>Fournisseur</label>
-                    <input type="text" id="categoryProvider" placeholder="Ex: EDF, Engie, Veolia...">
-                </div>
-                <div class="form-group">
-                    <label>Numéro de Compte / Référence</label>
-                    <input type="text" id="categoryAccount" placeholder="Numéro de compte">
-                </div>
-                <div class="form-group">
-                    <label>Identifiant</label>
-                    <input type="text" id="categoryUsername" placeholder="Identifiant de connexion">
-                </div>
-                <div class="form-group">
-                    <label>Mot de Passe</label>
-                    <input type="password" id="categoryPassword" placeholder="Mot de passe">
-                </div>
-                <div class="form-group">
-                    <label>URL du Dashboard</label>
-                    <input type="url" id="categoryUrl" placeholder="https://...">
-                </div>
-                <div class="form-group">
-                    <label>Notes</label>
-                    <textarea id="categoryNotes" rows="3" placeholder="Notes additionnelles..."></textarea>
-                </div>
-                <div class="action-buttons">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeModal('editCategoryModal')">Annuler</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <form id="editCategoryForm" onsubmit="saveCategory(event)">
+                    <div class="form-group">
+                        <label>Fournisseur</label>
+                        <input type="text" id="categoryProvider" placeholder="Ex: EDF, Engie...">
+                    </div>
+                    <div class="form-group">
+                        <label>Numéro de compte</label>
+                        <input type="text" id="categoryAccount" placeholder="Référence client">
+                    </div>
+                    <div class="form-group">
+                        <label>Identifiant</label>
+                        <input type="text" id="categoryUsername" placeholder="Identifiant de connexion">
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe</label>
+                        <input type="password" id="categoryPassword" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>URL du dashboard</label>
+                        <input type="url" id="categoryUrl" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea id="categoryNotes" rows="3" placeholder="Informations complémentaires..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('editCategoryModal')">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <!-- Modal Ajout Transaction -->
+    <!-- Add Transaction Modal -->
     <div id="addTransactionModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Ajouter une Transaction</h2>
-                <button class="close-btn" onclick="closeModal('addTransactionModal')">&times;</button>
+                <button class="close-btn" onclick="closeModal('addTransactionModal')">✕</button>
             </div>
-            <form id="addTransactionForm" onsubmit="addTransaction(event)">
-                <div class="form-group">
-                    <label>Type *</label>
-                    <select id="transactionType" required>
-                        <option value="revenue">Revenu (Loyer)</option>
-                        <option value="expense">Dépense (Facture)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Catégorie *</label>
-                    <select id="transactionCategory" required>
-                        <option value="loyer">Loyer</option>
-                        <option value="électricité">Électricité</option>
-                        <option value="gaz">Gaz</option>
-                        <option value="eau">Eau</option>
-                        <option value="taxe">Taxe</option>
-                        <option value="impôt">Impôt</option>
-                        <option value="autre">Autre</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Montant (€) *</label>
-                    <input type="number" id="transactionAmount" required step="0.01" placeholder="0.00">
-                </div>
-                <div class="form-group">
-                    <label>Date *</label>
-                    <input type="date" id="transactionDate" required>
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" id="transactionDescription" placeholder="Description de la transaction">
-                </div>
-                <div class="action-buttons">
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeModal('addTransactionModal')">Annuler</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <form id="addTransactionForm" onsubmit="addTransaction(event)">
+                    <div class="form-group">
+                        <label>Type *</label>
+                        <select id="transactionType" required>
+                            <option value="revenue">💰 Revenu (Loyer)</option>
+                            <option value="expense">💸 Dépense (Facture)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Catégorie *</label>
+                        <select id="transactionCategory" required>
+                            <option value="loyer">Loyer</option>
+                            <option value="électricité">Électricité</option>
+                            <option value="gaz">Gaz</option>
+                            <option value="eau">Eau</option>
+                            <option value="taxe">Taxe</option>
+                            <option value="impôt">Impôt</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Montant (€) *</label>
+                        <input type="number" id="transactionAmount" required step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Date *</label>
+                        <input type="date" id="transactionDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" id="transactionDescription" placeholder="Description...">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('addTransactionModal')">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <script>
-        // Stockage des données
+        // Data Storage
         let properties = [];
         let currentPropertyId = null;
 
-        // Initialisation
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadData();
             renderPropertyList();
-            // Définir la date par défaut à aujourd'hui
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('transactionDate').value = today;
         });
 
-        // Gestion du stockage local
+        // Local Storage
         function saveToLocalStorage() {
             localStorage.setItem('propertyManagementData', JSON.stringify(properties));
         }
@@ -624,7 +1045,7 @@
             }
         }
 
-        // Gestion des modals
+        // Modal Management
         function showModal(modalId) {
             document.getElementById(modalId).classList.add('active');
         }
@@ -638,7 +1059,7 @@
             showModal('addPropertyModal');
         }
 
-        // Ajout de propriété
+        // Property Management
         function addProperty(event) {
             event.preventDefault();
 
@@ -666,36 +1087,39 @@
             showProperty(property.id);
         }
 
-        // Affichage de la liste des propriétés
         function renderPropertyList() {
             const listElement = document.getElementById('propertyList');
 
             if (properties.length === 0) {
-                listElement.innerHTML = '<p style="text-align: center; color: #6c757d; margin-top: 20px;">Aucune propriété</p>';
+                listElement.innerHTML = '<div class="empty-state" style="padding: 32px 8px;"><div class="empty-icon">📭</div><p style="font-size: 13px;">Aucune propriété</p></div>';
                 return;
             }
 
             listElement.innerHTML = properties.map(property => `
-                <div class="property-item ${currentPropertyId === property.id ? 'active' : ''}"
+                <div class="property-card ${currentPropertyId === property.id ? 'active' : ''}"
                      onclick="showProperty(${property.id})">
-                    <h3>${property.name}</h3>
-                    <p>${property.type.charAt(0).toUpperCase() + property.type.slice(1)} - ${property.status}</p>
+                    <div class="property-name">${property.name}</div>
+                    <div class="property-meta">
+                        <span class="property-type">${property.type}</span>
+                        <span class="property-status">${property.status}</span>
+                    </div>
                 </div>
             `).join('');
         }
 
-        // Affichage d'une propriété
         function showProperty(propertyId) {
             currentPropertyId = propertyId;
             const property = properties.find(p => p.id === propertyId);
-
             if (!property) return;
 
             renderPropertyList();
 
-            const contentArea = document.getElementById('contentArea');
+            // Update topbar
+            document.getElementById('currentPropertyName').textContent = property.name;
+            document.getElementById('currentPropertySubtitle').textContent = `${property.type} • ${property.status}`;
+            document.getElementById('deleteBtn').style.display = 'flex';
 
-            // Calcul des statistiques
+            // Calculate stats
             const revenues = property.transactions
                 .filter(t => t.type === 'revenue')
                 .reduce((sum, t) => sum + t.amount, 0);
@@ -706,110 +1130,192 @@
 
             const balance = revenues - expenses;
 
+            // Render content
+            const contentArea = document.getElementById('contentArea');
             contentArea.innerHTML = `
-                <div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                        <div>
-                            <h2 style="color: #667eea; margin-bottom: 10px;">${property.name}</h2>
-                            <p style="color: #6c757d;">${property.type.charAt(0).toUpperCase() + property.type.slice(1)} - ${property.status}</p>
-                            ${property.address ? `<p style="color: #6c757d; margin-top: 5px;">📍 ${property.address}</p>` : ''}
-                            ${property.rent > 0 ? `<p style="color: #28a745; margin-top: 5px; font-weight: 600;">💰 ${property.rent.toFixed(2)} € / mois</p>` : ''}
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('overview')">📊 Vue d'ensemble</button>
+                    <button class="tab" onclick="switchTab('accounts')">🔑 Comptes & Services</button>
+                    <button class="tab" onclick="switchTab('finances')">💰 Finances</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview-tab" class="tab-content active">
+                    <div class="grid grid-3" style="margin-bottom: 32px;">
+                        <div class="stat-card success">
+                            <div class="stat-label">Revenus totaux</div>
+                            <div class="stat-value">${revenues.toFixed(2)} €</div>
+                            <div class="stat-change">${property.transactions.filter(t => t.type === 'revenue').length} transaction(s)</div>
                         </div>
-                        <button class="btn btn-danger" onclick="deleteProperty(${property.id})">
-                            🗑️ Supprimer
-                        </button>
+                        <div class="stat-card danger">
+                            <div class="stat-label">Dépenses totales</div>
+                            <div class="stat-value">${expenses.toFixed(2)} €</div>
+                            <div class="stat-change">${property.transactions.filter(t => t.type === 'expense').length} transaction(s)</div>
+                        </div>
+                        <div class="stat-card ${balance >= 0 ? 'warning' : 'danger'}">
+                            <div class="stat-label">Solde</div>
+                            <div class="stat-value">${balance.toFixed(2)} €</div>
+                            <div class="stat-change">${balance >= 0 ? 'Positif' : 'Négatif'}</div>
+                        </div>
                     </div>
 
-                    <h3 style="color: #667eea; margin-bottom: 20px;">📋 Informations des Comptes</h3>
-                    <div class="categories-grid">
-                        ${renderCategories(property)}
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">📋 Informations de la propriété</h3>
+                        </div>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span class="info-label">Type</span>
+                                <span class="info-value">${property.type}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Statut</span>
+                                <span class="info-value">${property.status}</span>
+                            </div>
+                            ${property.address ? `
+                                <div class="info-item">
+                                    <span class="info-label">Adresse</span>
+                                    <span class="info-value">${property.address}</span>
+                                </div>
+                            ` : ''}
+                            ${property.rent > 0 ? `
+                                <div class="info-item">
+                                    <span class="info-label">Loyer mensuel</span>
+                                    <span class="info-value">${property.rent.toFixed(2)} €</span>
+                                </div>
+                            ` : ''}
+                        </div>
                     </div>
+                </div>
 
-                    <div class="finances-section">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h3 style="color: #667eea;">💰 Gestion Financière</h3>
-                            <button class="btn btn-success" onclick="showAddTransactionModal()">
-                                ➕ Ajouter une Transaction
+                <!-- Accounts Tab -->
+                <div id="accounts-tab" class="tab-content">
+                    <div class="grid grid-2">
+                        ${renderCategoryCards(property)}
+                    </div>
+                </div>
+
+                <!-- Finances Tab -->
+                <div id="finances-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">💳 Transactions</h3>
+                            <button class="btn btn-success btn-icon" onclick="showAddTransactionModal()">
+                                <span>➕</span>
+                                <span>Ajouter</span>
                             </button>
                         </div>
-
-                        <div class="finances-grid">
-                            <div class="stat-card" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
-                                <h4>REVENUS TOTAUX</h4>
-                                <div class="amount">${revenues.toFixed(2)} €</div>
-                            </div>
-                            <div class="stat-card" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">
-                                <h4>DÉPENSES TOTALES</h4>
-                                <div class="amount">${expenses.toFixed(2)} €</div>
-                            </div>
-                            <div class="stat-card" style="background: linear-gradient(135deg, ${balance >= 0 ? '#17a2b8' : '#fd7e14'} 0%, ${balance >= 0 ? '#138496' : '#e8590c'} 100%);">
-                                <h4>SOLDE</h4>
-                                <div class="amount">${balance.toFixed(2)} €</div>
-                            </div>
-                        </div>
-
                         ${renderTransactions(property)}
+                    </div>
 
-                        <div class="export-section">
-                            <h3>📊 Exporter les Données</h3>
-                            <div class="action-buttons">
-                                <button class="btn btn-primary" onclick="exportPropertyToCSV(${property.id})">
-                                    📄 Exporter en CSV
-                                </button>
-                                <button class="btn btn-primary" onclick="exportPropertyToPDF(${property.id})">
-                                    📑 Générer Rapport PDF
-                                </button>
-                            </div>
-                        </div>
+                    <div style="margin-top: 24px;" class="grid grid-2">
+                        <button class="btn btn-secondary" onclick="exportPropertyToCSV(${property.id})">
+                            <span>📄</span>
+                            <span>Exporter en CSV</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="exportPropertyToPDF(${property.id})">
+                            <span>📑</span>
+                            <span>Générer rapport PDF</span>
+                        </button>
                     </div>
                 </div>
             `;
         }
 
-        // Affichage des catégories
-        function renderCategories(property) {
-            const categoryIcons = {
-                'électricité': '⚡',
-                'gaz': '🔥',
-                'eau': '💧',
-                'taxe': '🏛️',
-                'impôt': '📊'
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        function renderCategoryCards(property) {
+            const categoryData = {
+                'électricité': { icon: '⚡', name: 'Électricité', subtitle: 'Fournisseur d\'énergie' },
+                'gaz': { icon: '🔥', name: 'Gaz', subtitle: 'Chauffage et eau chaude' },
+                'eau': { icon: '💧', name: 'Eau', subtitle: 'Distribution d\'eau' },
+                'taxe': { icon: '🏛️', name: 'Taxe', subtitle: 'Taxes locales' },
+                'impôt': { icon: '📊', name: 'Impôt', subtitle: 'Impôts fonciers' }
             };
 
-            return Object.keys(property.categories).map(categoryName => {
-                const category = property.categories[categoryName];
+            return Object.keys(property.categories).map(categoryKey => {
+                const category = property.categories[categoryKey];
+                const info = categoryData[categoryKey];
                 const hasData = category.provider || category.username || category.password;
 
                 return `
                     <div class="category-card">
-                        <h3>${categoryIcons[categoryName]} ${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}</h3>
-                        ${hasData ? `
+                        <div class="category-header">
+                            <div class="category-icon">${info.icon}</div>
                             <div class="category-info">
-                                ${category.provider ? `<p><strong>Fournisseur:</strong> <span>${category.provider}</span></p>` : ''}
-                                ${category.account ? `<p><strong>N° Compte:</strong> <span>${category.account}</span></p>` : ''}
-                                ${category.username ? `<p><strong>Identifiant:</strong> <span>${category.username}</span></p>` : ''}
-                                ${category.password ? `
-                                    <p>
-                                        <strong>Mot de passe:</strong>
-                                        <span>
-                                            <span class="password-field" id="pwd-${property.id}-${categoryName}">••••••••</span>
-                                            <span class="password-toggle" onclick="togglePassword(${property.id}, '${categoryName}')">Afficher</span>
-                                        </span>
-                                    </p>
-                                ` : ''}
-                                ${category.url ? `<p><strong>Dashboard:</strong> <a href="${category.url}" target="_blank" style="color: #667eea;">${category.url}</a></p>` : ''}
-                                ${category.notes ? `<p><strong>Notes:</strong> <span>${category.notes}</span></p>` : ''}
+                                <div class="category-name">${info.name}</div>
+                                <div class="category-subtitle">${info.subtitle}</div>
                             </div>
-                        ` : '<p style="color: #6c757d; text-align: center;">Aucune information</p>'}
-                        <button class="btn btn-primary" style="margin-top: 10px;" onclick="editCategory(${property.id}, '${categoryName}')">
-                            ✏️ Modifier
+                        </div>
+                        ${hasData ? `
+                            <div class="info-list">
+                                ${category.provider ? `
+                                    <div class="info-item">
+                                        <span class="info-label">Fournisseur</span>
+                                        <span class="info-value">${category.provider}</span>
+                                    </div>
+                                ` : ''}
+                                ${category.account ? `
+                                    <div class="info-item">
+                                        <span class="info-label">N° Compte</span>
+                                        <span class="info-value">${category.account}</span>
+                                    </div>
+                                ` : ''}
+                                ${category.username ? `
+                                    <div class="info-item">
+                                        <span class="info-label">Identifiant</span>
+                                        <span class="info-value">${category.username}</span>
+                                    </div>
+                                ` : ''}
+                                ${category.password ? `
+                                    <div class="info-item">
+                                        <span class="info-label">Mot de passe</span>
+                                        <span class="info-value">
+                                            <span class="password-field" id="pwd-${property.id}-${categoryKey}">••••••••</span>
+                                            <span class="password-toggle" onclick="togglePassword(${property.id}, '${categoryKey}')">Afficher</span>
+                                        </span>
+                                    </div>
+                                ` : ''}
+                                ${category.url ? `
+                                    <div class="info-item">
+                                        <span class="info-label">Dashboard</span>
+                                        <span class="info-value"><a href="${category.url}" target="_blank" style="color: var(--primary);">Ouvrir</a></span>
+                                    </div>
+                                ` : ''}
+                                ${category.notes ? `
+                                    <div class="info-item" style="flex-direction: column; align-items: flex-start;">
+                                        <span class="info-label">Notes</span>
+                                        <span class="info-value" style="margin-top: 4px;">${category.notes}</span>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        ` : `
+                            <div class="empty-state" style="padding: 32px 16px;">
+                                <div class="empty-icon" style="font-size: 32px;">📝</div>
+                                <p style="font-size: 13px;">Aucune information</p>
+                            </div>
+                        `}
+                        <button class="btn btn-primary" onclick="editCategory(${property.id}, '${categoryKey}')">
+                            <span>✏️</span>
+                            <span>Modifier</span>
                         </button>
                     </div>
                 `;
             }).join('');
         }
 
-        // Toggle mot de passe
         function togglePassword(propertyId, categoryName) {
             const property = properties.find(p => p.id === propertyId);
             const pwdElement = document.getElementById(`pwd-${propertyId}-${categoryName}`);
@@ -824,7 +1330,6 @@
             }
         }
 
-        // Édition de catégorie
         let currentEditCategory = null;
 
         function editCategory(propertyId, categoryName) {
@@ -832,9 +1337,15 @@
             const property = properties.find(p => p.id === propertyId);
             const category = property.categories[categoryName];
 
-            document.getElementById('editCategoryTitle').textContent =
-                `Modifier ${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}`;
+            const categoryNames = {
+                'électricité': 'Électricité',
+                'gaz': 'Gaz',
+                'eau': 'Eau',
+                'taxe': 'Taxe',
+                'impôt': 'Impôt'
+            };
 
+            document.getElementById('editCategoryTitle').textContent = `Modifier ${categoryNames[categoryName]}`;
             document.getElementById('categoryProvider').value = category.provider || '';
             document.getElementById('categoryAccount').value = category.account || '';
             document.getElementById('categoryUsername').value = category.username || '';
@@ -865,7 +1376,7 @@
             showProperty(currentEditCategory.propertyId);
         }
 
-        // Gestion des transactions
+        // Transactions
         function showAddTransactionModal() {
             document.getElementById('addTransactionForm').reset();
             const today = new Date().toISOString().split('T')[0];
@@ -899,18 +1410,19 @@
             if (property.transactions.length === 0) {
                 return `
                     <div class="empty-state">
-                        <p>📝 Aucune transaction enregistrée</p>
+                        <div class="empty-icon">📝</div>
+                        <h3>Aucune transaction</h3>
+                        <p>Commencez par ajouter votre première transaction</p>
                     </div>
                 `;
             }
 
-            // Trier par date décroissante
             const sortedTransactions = [...property.transactions].sort((a, b) =>
                 new Date(b.date) - new Date(a.date)
             );
 
             return `
-                <div class="transactions-table">
+                <div class="table-container">
                     <table>
                         <thead>
                             <tr>
@@ -919,7 +1431,7 @@
                                 <th>Catégorie</th>
                                 <th>Description</th>
                                 <th>Montant</th>
-                                <th>Action</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -927,17 +1439,17 @@
                                 <tr>
                                     <td>${new Date(transaction.date).toLocaleDateString('fr-FR')}</td>
                                     <td>
-                                        <span class="badge ${transaction.type === 'revenue' ? 'badge-revenue' : 'badge-expense'}">
+                                        <span class="badge ${transaction.type === 'revenue' ? 'badge-success' : 'badge-danger'}">
                                             ${transaction.type === 'revenue' ? '💰 Revenu' : '💸 Dépense'}
                                         </span>
                                     </td>
                                     <td>${transaction.category}</td>
                                     <td>${transaction.description || '-'}</td>
-                                    <td style="font-weight: 600; color: ${transaction.type === 'revenue' ? '#28a745' : '#dc3545'}">
+                                    <td class="${transaction.type === 'revenue' ? 'amount-positive' : 'amount-negative'}">
                                         ${transaction.type === 'revenue' ? '+' : '-'}${transaction.amount.toFixed(2)} €
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.85em;"
+                                        <button class="btn btn-danger btn-icon" style="padding: 6px 12px; font-size: 12px;"
                                                 onclick="deleteTransaction(${property.id}, ${transaction.id})">
                                             🗑️
                                         </button>
@@ -951,7 +1463,7 @@
         }
 
         function deleteTransaction(propertyId, transactionId) {
-            if (!confirm('Êtes-vous sûr de vouloir supprimer cette transaction ?')) return;
+            if (!confirm('Supprimer cette transaction ?')) return;
 
             const property = properties.find(p => p.id === propertyId);
             property.transactions = property.transactions.filter(t => t.id !== transactionId);
@@ -960,22 +1472,25 @@
             showProperty(propertyId);
         }
 
-        // Suppression de propriété
-        function deleteProperty(propertyId) {
+        function deleteCurrentProperty() {
+            if (!currentPropertyId) return;
             if (!confirm('Êtes-vous sûr de vouloir supprimer cette propriété ? Toutes les données seront perdues.')) return;
 
-            properties = properties.filter(p => p.id !== propertyId);
+            properties = properties.filter(p => p.id !== currentPropertyId);
             saveToLocalStorage();
+            currentPropertyId = null;
             renderPropertyList();
 
             document.getElementById('contentArea').innerHTML = `
                 <div class="welcome-screen">
-                    <h2>👋 Bienvenue !</h2>
-                    <p>Sélectionnez une propriété ou ajoutez-en une nouvelle</p>
+                    <div class="welcome-icon">🏠</div>
+                    <h2>Bienvenue sur PropertyHub</h2>
+                    <p>Commencez par ajouter votre première propriété pour gérer vos biens immobiliers en toute simplicité</p>
                 </div>
             `;
-
-            currentPropertyId = null;
+            document.getElementById('currentPropertyName').textContent = 'Tableau de bord';
+            document.getElementById('currentPropertySubtitle').textContent = 'Sélectionnez une propriété';
+            document.getElementById('deleteBtn').style.display = 'none';
         }
 
         // Export / Import
@@ -985,7 +1500,7 @@
             const url = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `gestion-proprietes-${new Date().toISOString().split('T')[0]}.json`;
+            link.download = `propertyhub-backup-${new Date().toISOString().split('T')[0]}.json`;
             link.click();
             URL.revokeObjectURL(url);
         }
@@ -1002,14 +1517,14 @@
                 reader.onload = function(e) {
                     try {
                         const importedData = JSON.parse(e.target.result);
-                        if (confirm('Voulez-vous remplacer toutes les données actuelles par les données importées ?')) {
+                        if (confirm('Remplacer toutes les données actuelles ?')) {
                             properties = importedData;
                             saveToLocalStorage();
                             renderPropertyList();
-                            alert('Données importées avec succès !');
+                            alert('✅ Données importées avec succès !');
                         }
                     } catch (error) {
-                        alert('Erreur lors de l\'importation des données. Vérifiez que le fichier est valide.');
+                        alert('❌ Erreur lors de l\'importation. Vérifiez le fichier.');
                     }
                 };
                 reader.readAsText(file);
@@ -1047,7 +1562,6 @@
             const property = properties.find(p => p.id === propertyId);
             if (!property) return;
 
-            // Calcul des statistiques
             const revenues = property.transactions
                 .filter(t => t.type === 'revenue')
                 .reduce((sum, t) => sum + t.amount, 0);
@@ -1058,7 +1572,6 @@
 
             const balance = revenues - expenses;
 
-            // Générer un document HTML pour impression
             const reportWindow = window.open('', '_blank');
             reportWindow.document.write(`
                 <!DOCTYPE html>
@@ -1067,30 +1580,36 @@
                     <meta charset="UTF-8">
                     <title>Rapport - ${property.name}</title>
                     <style>
-                        body { font-family: Arial, sans-serif; padding: 40px; }
-                        h1 { color: #667eea; }
-                        h2 { color: #495057; margin-top: 30px; }
-                        .info { margin: 20px 0; }
-                        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0; }
-                        .stat-box { background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; }
-                        .stat-box h3 { margin: 0; font-size: 0.9em; color: #6c757d; }
-                        .stat-box .amount { font-size: 2em; font-weight: bold; margin-top: 10px; }
-                        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                        th, td { border: 1px solid #dee2e6; padding: 12px; text-align: left; }
-                        th { background: #f8f9fa; font-weight: 600; }
-                        .revenue { color: #28a745; }
-                        .expense { color: #dc3545; }
-                        .footer { margin-top: 40px; padding-top: 20px; border-top: 2px solid #dee2e6; color: #6c757d; text-align: center; }
+                        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; padding: 40px; color: #1e293b; }
+                        h1 { color: #2563eb; margin-bottom: 8px; }
+                        h2 { color: #475569; margin-top: 32px; margin-bottom: 16px; font-size: 20px; }
+                        .header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px solid #e2e8f0; }
+                        .info { background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px; }
+                        .info p { margin: 8px 0; }
+                        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 24px 0; }
+                        .stat-box { background: #f8fafc; padding: 20px; border-radius: 12px; text-align: center; border-top: 4px solid #2563eb; }
+                        .stat-box h3 { margin: 0; font-size: 12px; text-transform: uppercase; color: #64748b; font-weight: 700; }
+                        .stat-box .amount { font-size: 28px; font-weight: 700; margin-top: 8px; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+                        th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+                        th { background: #f8fafc; font-weight: 600; font-size: 13px; text-transform: uppercase; color: #64748b; }
+                        .revenue { color: #10b981; font-weight: 600; }
+                        .expense { color: #ef4444; font-weight: 600; }
+                        .footer { margin-top: 48px; padding-top: 24px; border-top: 2px solid #e2e8f0; color: #64748b; text-align: center; font-size: 14px; }
                     </style>
                 </head>
                 <body>
-                    <h1>📊 Rapport de Propriété</h1>
+                    <div class="header">
+                        <h1>📊 Rapport de Propriété</h1>
+                        <p style="color: #64748b;">Généré le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}</p>
+                    </div>
+
                     <div class="info">
                         <h2>${property.name}</h2>
                         <p><strong>Type:</strong> ${property.type}</p>
                         <p><strong>Statut:</strong> ${property.status}</p>
                         ${property.address ? `<p><strong>Adresse:</strong> ${property.address}</p>` : ''}
-                        ${property.rent > 0 ? `<p><strong>Loyer:</strong> ${property.rent.toFixed(2)} € / mois</p>` : ''}
+                        ${property.rent > 0 ? `<p><strong>Loyer mensuel:</strong> ${property.rent.toFixed(2)} €</p>` : ''}
                     </div>
 
                     <h2>Résumé Financier</h2>
@@ -1105,7 +1624,7 @@
                         </div>
                         <div class="stat-box">
                             <h3>Solde</h3>
-                            <div class="amount" style="color: ${balance >= 0 ? '#17a2b8' : '#fd7e14'}">${balance.toFixed(2)} €</div>
+                            <div class="amount" style="color: ${balance >= 0 ? '#2563eb' : '#f59e0b'}">${balance.toFixed(2)} €</div>
                         </div>
                     </div>
 
@@ -1140,8 +1659,7 @@
                     ` : '<p>Aucune transaction enregistrée</p>'}
 
                     <div class="footer">
-                        <p>Rapport généré le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}</p>
-                        <p>Gestion de Propriétés Immobilières</p>
+                        <p><strong>PropertyHub</strong> - Gestion de Propriétés Immobilières</p>
                     </div>
                 </body>
                 </html>
