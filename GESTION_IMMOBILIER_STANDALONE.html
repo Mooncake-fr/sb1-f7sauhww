@@ -491,8 +491,8 @@
         .category-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 24px;
+            border-radius: var(--radius);
+            padding: 16px;
             transition: all 0.2s ease;
         }
 
@@ -504,63 +504,72 @@
         .category-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
         }
 
         .category-icon {
-            width: 48px;
-            height: 48px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--background) 0%, #e2e8f0 100%);
             border-radius: var(--radius);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
+            flex-shrink: 0;
         }
 
         .category-info {
             flex: 1;
+            min-width: 0;
         }
 
         .category-name {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 2px;
         }
 
         .category-subtitle {
-            font-size: 13px;
+            font-size: 11px;
             color: var(--text-secondary);
         }
 
         .info-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .info-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
+            padding: 8px 10px;
             background: var(--background);
-            border-radius: var(--radius);
+            border-radius: 6px;
+            gap: 8px;
         }
 
         .info-label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--text-secondary);
+            white-space: nowrap;
         }
 
         .info-value {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-primary);
             font-weight: 500;
+            text-align: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .password-field {
@@ -1173,13 +1182,43 @@
             const contentArea = document.getElementById('contentArea');
             contentArea.innerHTML = `
                 <div class="tabs">
-                    <button class="tab active" onclick="switchTab('overview')">📊 Vue d'ensemble</button>
+                    <button class="tab active" onclick="switchTab('finances')" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; font-weight: 700;">💰 Factures & Revenus</button>
+                    <button class="tab" onclick="switchTab('overview')">📊 Vue d'ensemble</button>
                     <button class="tab" onclick="switchTab('accounts')">🔑 Comptes & Services</button>
-                    <button class="tab" onclick="switchTab('finances')">💰 Finances</button>
+                </div>
+
+                <!-- Finances Tab (Premier maintenant) -->
+                <div id="finances-tab" class="tab-content active">
+                    <div class="cta-section">
+                        <h3>💰 Ajouter une facture ou un revenu</h3>
+                        <p>Suivez vos revenus de loyers et vos dépenses (factures, taxes, etc.)</p>
+                        <button class="btn btn-success btn-lg" onclick="showAddTransactionModal()">
+                            <span>➕</span>
+                            <span>Ajouter une Transaction</span>
+                        </button>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">💳 Historique des Transactions</h3>
+                        </div>
+                        ${renderTransactions(property)}
+                    </div>
+
+                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" onclick="exportPropertyToCSV(${property.id})">
+                            <span>📄</span>
+                            <span>Exporter en CSV</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="exportPropertyToPDF(${property.id})">
+                            <span>📑</span>
+                            <span>Générer rapport PDF</span>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Overview Tab -->
-                <div id="overview-tab" class="tab-content active">
+                <div id="overview-tab" class="tab-content">
                     <div class="grid grid-3" style="margin-bottom: 32px;">
                         <div class="stat-card success">
                             <div class="stat-label">Revenus totaux</div>
@@ -1229,38 +1268,8 @@
 
                 <!-- Accounts Tab -->
                 <div id="accounts-tab" class="tab-content">
-                    <div class="grid grid-2">
+                    <div class="grid grid-3">
                         ${renderCategoryCards(property)}
-                    </div>
-                </div>
-
-                <!-- Finances Tab -->
-                <div id="finances-tab" class="tab-content">
-                    <div class="cta-section">
-                        <h3>💰 Ajouter une facture ou un revenu</h3>
-                        <p>Suivez vos revenus de loyers et vos dépenses (factures, taxes, etc.)</p>
-                        <button class="btn btn-success btn-lg" onclick="showAddTransactionModal()">
-                            <span>➕</span>
-                            <span>Ajouter une Transaction</span>
-                        </button>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">💳 Historique des Transactions</h3>
-                        </div>
-                        ${renderTransactions(property)}
-                    </div>
-
-                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-                        <button class="btn btn-secondary" onclick="exportPropertyToCSV(${property.id})">
-                            <span>📄</span>
-                            <span>Exporter en CSV</span>
-                        </button>
-                        <button class="btn btn-secondary" onclick="exportPropertyToPDF(${property.id})">
-                            <span>📑</span>
-                            <span>Générer rapport PDF</span>
-                        </button>
                     </div>
                 </div>
             `;
@@ -1270,8 +1279,19 @@
             // Update tab buttons
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
+                // Réinitialiser le style du bouton Finances
+                if (tab.textContent.includes('Factures')) {
+                    tab.style.background = '';
+                    tab.style.color = '';
+                }
             });
             event.target.classList.add('active');
+
+            // Remettre le style vert si c'est Finances et actif
+            if (tabName === 'finances') {
+                event.target.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                event.target.style.color = 'white';
+            }
 
             // Update tab content
             document.querySelectorAll('.tab-content').forEach(content => {
@@ -1293,7 +1313,7 @@
             return Object.keys(property.categories).map(categoryKey => {
                 const category = property.categories[categoryKey];
                 const info = categoryData[categoryKey];
-                const hasData = category.provider || category.username || category.password;
+                const hasData = category.username || category.password || category.url;
 
                 return `
                     <div class="category-card">
@@ -1301,23 +1321,10 @@
                             <div class="category-icon">${info.icon}</div>
                             <div class="category-info">
                                 <div class="category-name">${info.name}</div>
-                                <div class="category-subtitle">${info.subtitle}</div>
                             </div>
                         </div>
                         ${hasData ? `
                             <div class="info-list">
-                                ${category.provider ? `
-                                    <div class="info-item">
-                                        <span class="info-label">Fournisseur</span>
-                                        <span class="info-value">${category.provider}</span>
-                                    </div>
-                                ` : ''}
-                                ${category.account ? `
-                                    <div class="info-item">
-                                        <span class="info-label">N° Compte</span>
-                                        <span class="info-value">${category.account}</span>
-                                    </div>
-                                ` : ''}
                                 ${category.username ? `
                                     <div class="info-item">
                                         <span class="info-label">Identifiant</span>
@@ -1329,30 +1336,24 @@
                                         <span class="info-label">Mot de passe</span>
                                         <span class="info-value">
                                             <span class="password-field" id="pwd-${property.id}-${categoryKey}">••••••••</span>
-                                            <span class="password-toggle" onclick="togglePassword(${property.id}, '${categoryKey}')">Afficher</span>
+                                            <span class="password-toggle" onclick="togglePassword(${property.id}, '${categoryKey}')">Voir</span>
                                         </span>
                                     </div>
                                 ` : ''}
                                 ${category.url ? `
                                     <div class="info-item">
-                                        <span class="info-label">Dashboard</span>
-                                        <span class="info-value"><a href="${category.url}" target="_blank" style="color: var(--primary);">Ouvrir</a></span>
-                                    </div>
-                                ` : ''}
-                                ${category.notes ? `
-                                    <div class="info-item" style="flex-direction: column; align-items: flex-start;">
-                                        <span class="info-label">Notes</span>
-                                        <span class="info-value" style="margin-top: 4px;">${category.notes}</span>
+                                        <span class="info-label">Site web</span>
+                                        <span class="info-value"><a href="${category.url}" target="_blank" style="color: var(--primary); text-decoration: none;">🔗 Ouvrir</a></span>
                                     </div>
                                 ` : ''}
                             </div>
                         ` : `
-                            <div class="empty-state" style="padding: 32px 16px;">
-                                <div class="empty-icon" style="font-size: 32px;">📝</div>
-                                <p style="font-size: 13px;">Aucune information</p>
+                            <div class="empty-state" style="padding: 20px 12px;">
+                                <div class="empty-icon" style="font-size: 24px;">📝</div>
+                                <p style="font-size: 11px;">Aucune info</p>
                             </div>
                         `}
-                        <button class="btn btn-primary" onclick="editCategory(${property.id}, '${categoryKey}')">
+                        <button class="btn btn-primary btn-block" style="padding: 8px 16px; font-size: 13px;" onclick="editCategory(${property.id}, '${categoryKey}')">
                             <span>✏️</span>
                             <span>Modifier</span>
                         </button>
