@@ -1,0 +1,674 @@
+<!--
+  CARTE DE FRANCE 3D PREMIUM - Compatible Elementor
+  À coller dans un widget HTML Elementor
+  Auteur: La Voie du Sommet
+  Version: 1.0
+-->
+
+<div class="france-map-3d-container">
+  <!-- Pop-up Glassmorphism -->
+  <div class="france-map-3d-popup" id="franceMapPopup">
+    <div class="france-map-3d-popup-content">
+      <button class="france-map-3d-popup-close" id="popupClose">&times;</button>
+      <h3 class="france-map-3d-popup-title" id="popupTitle"></h3>
+      <p class="france-map-3d-popup-subtitle" id="popupSubtitle"></p>
+      <p class="france-map-3d-popup-text">
+        Un préparateur mental certifié <strong>La Voie du Sommet</strong> est disponible dans cette ville et ce département.
+      </p>
+      <button class="france-map-3d-popup-cta" id="popupCTA">
+        Voir le préparateur mental →
+      </button>
+    </div>
+  </div>
+
+  <!-- Carte SVG de France -->
+  <div class="france-map-3d-wrapper">
+    <svg id="franceMapSVG" class="france-map-3d-svg" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Définition du filtre pour l'ombre -->
+      <defs>
+        <filter id="shadowFilter" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+          <feOffset dx="0" dy="4" result="offsetblur"/>
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.3"/>
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+        <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Groupe pour tous les départements -->
+      <g id="departements">
+        <!-- Région Auvergne-Rhône-Alpes -->
+        <path class="france-map-dept" data-dept="01" d="M680,580 L720,580 L720,620 L680,620 Z" />
+        <path class="france-map-dept" data-dept="03" d="M600,580 L640,580 L640,620 L600,620 Z" />
+        <path class="france-map-dept" data-dept="07" d="M680,680 L740,680 L740,740 L680,740 Z" />
+        <path class="france-map-dept" data-dept="15" d="M580,640 L640,640 L640,700 L580,700 Z" />
+        <path class="france-map-dept" data-dept="26" d="M720,700 L780,700 L780,760 L720,760 Z" />
+        <path class="france-map-dept" data-dept="38" d="M740,640 L800,640 L800,700 L740,700 Z" />
+        <path class="france-map-dept" data-dept="42" d="M680,620 L740,620 L740,680 L680,680 Z" />
+        <path class="france-map-dept" data-dept="43" d="M640,680 L700,680 L700,740 L640,740 Z" />
+        <path class="france-map-dept" data-dept="63" d="M580,580 L640,580 L640,640 L580,640 Z" />
+        <path class="france-map-dept" data-dept="69" d="M720,580 L760,580 L760,620 L720,620 Z" />
+        <path class="france-map-dept" data-dept="73" d="M780,640 L840,640 L840,700 L780,700 Z" />
+        <path class="france-map-dept" data-dept="74" d="M780,580 L840,580 L840,640 L780,640 Z" />
+
+        <!-- Région Bourgogne-Franche-Comté -->
+        <path class="france-map-dept" data-dept="21" d="M640,480 L700,480 L700,540 L640,540 Z" />
+        <path class="france-map-dept" data-dept="25" d="M740,440 L800,440 L800,500 L740,500 Z" />
+        <path class="france-map-dept" data-dept="39" d="M720,500 L780,500 L780,560 L720,560 Z" />
+        <path class="france-map-dept" data-dept="58" d="M580,480 L640,480 L640,540 L580,540 Z" />
+        <path class="france-map-dept" data-dept="70" d="M720,440 L780,440 L780,500 L720,500 Z" />
+        <path class="france-map-dept" data-dept="71" d="M680,520 L740,520 L740,580 L680,580 Z" />
+        <path class="france-map-dept" data-dept="89" d="M600,440 L660,440 L660,500 L600,500 Z" />
+        <path class="france-map-dept" data-dept="90" d="M760,420 L820,420 L820,480 L760,480 Z" />
+
+        <!-- Région Bretagne -->
+        <path class="france-map-dept" data-dept="22" d="M200,340 L260,340 L260,400 L200,400 Z" />
+        <path class="france-map-dept" data-dept="29" d="M120,340 L180,340 L180,400 L120,400 Z" />
+        <path class="france-map-dept" data-dept="35" d="M260,380 L320,380 L320,440 L260,440 Z" />
+        <path class="france-map-dept" data-dept="56" d="M180,380 L240,380 L240,440 L180,440 Z" />
+
+        <!-- Région Centre-Val de Loire -->
+        <path class="france-map-dept" data-dept="18" d="M500,480 L560,480 L560,540 L500,540 Z" />
+        <path class="france-map-dept" data-dept="28" d="M440,420 L500,420 L500,480 L440,480 Z" />
+        <path class="france-map-dept" data-dept="36" d="M460,520 L520,520 L520,580 L460,580 Z" />
+        <path class="france-map-dept" data-dept="37" d="M400,520 L460,520 L460,580 L400,580 Z" />
+        <path class="france-map-dept" data-dept="41" d="M420,480 L480,480 L480,540 L420,540 Z" />
+        <path class="france-map-dept" data-dept="45" d="M480,460 L540,460 L540,520 L480,520 Z" />
+
+        <!-- Région Corse -->
+        <path class="france-map-dept" data-dept="2A" d="M860,900 L900,900 L900,960 L860,960 Z" />
+        <path class="france-map-dept" data-dept="2B" d="M860,840 L900,840 L900,900 L860,900 Z" />
+
+        <!-- Région Grand Est -->
+        <path class="france-map-dept" data-dept="08" d="M620,280 L680,280 L680,340 L620,340 Z" />
+        <path class="france-map-dept" data-dept="10" d="M580,360 L640,360 L640,420 L580,420 Z" />
+        <path class="france-map-dept" data-dept="51" d="M560,320 L620,320 L620,380 L560,380 Z" />
+        <path class="france-map-dept" data-dept="52" d="M620,360 L680,360 L680,420 L620,420 Z" />
+        <path class="france-map-dept" data-dept="54" d="M700,340 L760,340 L760,400 L700,400 Z" />
+        <path class="france-map-dept" data-dept="55" d="M660,320 L720,320 L720,380 L660,380 Z" />
+        <path class="france-map-dept" data-dept="57" d="M720,280 L780,280 L780,340 L720,340 Z" />
+        <path class="france-map-dept" data-dept="67" d="M780,280 L840,280 L840,340 L780,340 Z" />
+        <path class="france-map-dept" data-dept="68" d="M780,340 L840,340 L840,400 L780,400 Z" />
+        <path class="france-map-dept" data-dept="88" d="M720,380 L780,380 L780,440 L720,440 Z" />
+
+        <!-- Région Hauts-de-France -->
+        <path class="france-map-dept" data-dept="02" d="M560,240 L620,240 L620,300 L560,300 Z" />
+        <path class="france-map-dept" data-dept="59" d="M560,180 L620,180 L620,240 L560,240 Z" />
+        <path class="france-map-dept" data-dept="60" d="M500,220 L560,220 L560,280 L500,280 Z" />
+        <path class="france-map-dept" data-dept="62" d="M480,160 L540,160 L540,220 L480,220 Z" />
+        <path class="france-map-dept" data-dept="80" d="M460,240 L520,240 L520,300 L460,300 Z" />
+
+        <!-- Région Île-de-France -->
+        <path class="france-map-dept" data-dept="75" d="M500,340 L540,340 L540,380 L500,380 Z" />
+        <path class="france-map-dept" data-dept="77" d="M540,340 L600,340 L600,400 L540,400 Z" />
+        <path class="france-map-dept" data-dept="78" d="M460,320 L520,320 L520,380 L460,380 Z" />
+        <path class="france-map-dept" data-dept="91" d="M480,380 L540,380 L540,440 L480,440 Z" />
+        <path class="france-map-dept" data-dept="92" d="M480,320 L520,320 L520,360 L480,360 Z" />
+        <path class="france-map-dept" data-dept="93" d="M520,320 L560,320 L560,360 L520,360 Z" />
+        <path class="france-map-dept" data-dept="94" d="M540,360 L580,360 L580,400 L540,400 Z" />
+        <path class="france-map-dept" data-dept="95" d="M500,300 L560,300 L560,340 L500,340 Z" />
+
+        <!-- Région Normandie -->
+        <path class="france-map-dept" data-dept="14" d="M340,280 L400,280 L400,340 L340,340 Z" />
+        <path class="france-map-dept" data-dept="27" d="M400,300 L460,300 L460,360 L400,360 Z" />
+        <path class="france-map-dept" data-dept="50" d="M280,300 L340,300 L340,360 L280,360 Z" />
+        <path class="france-map-dept" data-dept="61" d="M340,340 L400,340 L400,400 L340,400 Z" />
+        <path class="france-map-dept" data-dept="76" d="M420,240 L480,240 L480,300 L420,300 Z" />
+
+        <!-- Région Nouvelle-Aquitaine -->
+        <path class="france-map-dept" data-dept="16" d="M380,620 L440,620 L440,680 L380,680 Z" />
+        <path class="france-map-dept" data-dept="17" d="M300,600 L360,600 L360,660 L300,660 Z" />
+        <path class="france-map-dept" data-dept="19" d="M460,660 L520,660 L520,720 L460,720 Z" />
+        <path class="france-map-dept" data-dept="23" d="M460,600 L520,600 L520,660 L460,660 Z" />
+        <path class="france-map-dept" data-dept="24" d="M400,680 L460,680 L460,740 L400,740 Z" />
+        <path class="france-map-dept" data-dept="33" d="M340,720 L400,720 L400,780 L340,780 Z" />
+        <path class="france-map-dept" data-dept="40" d="M320,780 L380,780 L380,840 L320,840 Z" />
+        <path class="france-map-dept" data-dept="47" d="M400,760 L460,760 L460,820 L400,820 Z" />
+        <path class="france-map-dept" data-dept="64" d="M280,840 L340,840 L340,900 L280,900 Z" />
+        <path class="france-map-dept" data-dept="79" d="M340,560 L400,560 L400,620 L340,620 Z" />
+        <path class="france-map-dept" data-dept="86" d="M380,560 L440,560 L440,620 L380,620 Z" />
+        <path class="france-map-dept" data-dept="87" d="M440,580 L500,580 L500,640 L440,640 Z" />
+
+        <!-- Région Occitanie -->
+        <path class="france-map-dept" data-dept="09" d="M480,860 L540,860 L540,920 L480,920 Z" />
+        <path class="france-map-dept" data-dept="11" d="M540,820 L600,820 L600,880 L540,880 Z" />
+        <path class="france-map-dept" data-dept="12" d="M540,700 L600,700 L600,760 L540,760 Z" />
+        <path class="france-map-dept" data-dept="30" d="M620,740 L680,740 L680,800 L620,800 Z" />
+        <path class="france-map-dept" data-dept="31" d="M460,820 L520,820 L520,880 L460,880 Z" />
+        <path class="france-map-dept" data-dept="32" d="M400,820 L460,820 L460,880 L400,880 Z" />
+        <path class="france-map-dept" data-dept="34" d="M600,780 L660,780 L660,840 L600,840 Z" />
+        <path class="france-map-dept" data-dept="46" d="M460,720 L520,720 L520,780 L460,780 Z" />
+        <path class="france-map-dept" data-dept="48" d="M600,700 L660,700 L660,760 L600,760 Z" />
+        <path class="france-map-dept" data-dept="65" d="M380,860 L440,860 L440,920 L380,920 Z" />
+        <path class="france-map-dept" data-dept="66" d="M580,860 L640,860 L640,920 L580,920 Z" />
+        <path class="france-map-dept" data-dept="81" d="M500,760 L560,760 L560,820 L500,820 Z" />
+        <path class="france-map-dept" data-dept="82" d="M520,780 L580,780 L580,840 L520,840 Z" />
+
+        <!-- Région Pays de la Loire -->
+        <path class="france-map-dept" data-dept="44" d="M280,460 L340,460 L340,520 L280,520 Z" />
+        <path class="france-map-dept" data-dept="49" d="M320,440 L380,440 L380,500 L320,500 Z" />
+        <path class="france-map-dept" data-dept="53" d="M320,400 L380,400 L380,460 L320,460 Z" />
+        <path class="france-map-dept" data-dept="72" d="M380,420 L440,420 L440,480 L380,480 Z" />
+        <path class="france-map-dept" data-dept="85" d="M280,520 L340,520 L340,580 L280,580 Z" />
+
+        <!-- Région Provence-Alpes-Côte d'Azur -->
+        <path class="france-map-dept" data-dept="04" d="M720,760 L780,760 L780,820 L720,820 Z" />
+        <path class="france-map-dept" data-dept="05" d="M760,700 L820,700 L820,760 L760,760 Z" />
+        <path class="france-map-dept" data-dept="06" d="M780,780 L840,780 L840,840 L780,840 Z" />
+        <path class="france-map-dept" data-dept="13" d="M660,780 L720,780 L720,840 L660,840 Z" />
+        <path class="france-map-dept" data-dept="83" d="M700,800 L760,800 L760,860 L700,860 Z" />
+        <path class="france-map-dept" data-dept="84" d="M680,740 L740,740 L740,800 L680,800 Z" />
+
+        <!-- Départements d'Outre-Mer (représentation symbolique) -->
+        <g id="outre-mer" transform="translate(50, 950)">
+          <path class="france-map-dept" data-dept="971" d="M0,0 L40,0 L40,40 L0,40 Z" />
+          <path class="france-map-dept" data-dept="972" d="M50,0 L90,0 L90,40 L50,40 Z" />
+          <path class="france-map-dept" data-dept="973" d="M100,0 L140,0 L140,40 L100,40 Z" />
+          <path class="france-map-dept" data-dept="974" d="M150,0 L190,0 L190,40 L150,40 Z" />
+          <path class="france-map-dept" data-dept="976" d="M200,0 L240,0 L240,40 L200,40 Z" />
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+/* ==============================================
+   STYLES CARTE DE FRANCE 3D - Compatible Elementor
+   ============================================== */
+
+/* Container principal */
+.france-map-3d-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.france-map-3d-container * {
+  box-sizing: border-box;
+}
+
+/* Wrapper de la carte */
+.france-map-3d-wrapper {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  border-radius: 24px;
+  padding: 40px 20px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.08),
+    0 10px 30px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+
+.france-map-3d-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%);
+}
+
+/* SVG de la carte */
+.france-map-3d-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.05));
+}
+
+/* Départements */
+.france-map-dept {
+  fill: #ffffff;
+  stroke: #e2e8f0;
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: url(#shadowFilter);
+  transform-origin: center;
+}
+
+/* Effet au survol */
+.france-map-dept:hover {
+  fill: #4f46e5;
+  stroke: #6366f1;
+  stroke-width: 2;
+  filter: url(#glowFilter) drop-shadow(0 8px 16px rgba(79, 70, 229, 0.3));
+  transform: scale(1.05) translateY(-2px);
+  z-index: 10;
+}
+
+/* Effet au clic */
+.france-map-dept:active {
+  transform: scale(1.08) translateY(-3px);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pop-up Glassmorphism */
+.france-map-3d-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px;
+}
+
+.france-map-3d-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Contenu du pop-up */
+.france-map-3d-popup-content {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.15),
+    0 10px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.france-map-3d-popup.active .france-map-3d-popup-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Bouton de fermeture */
+.france-map-3d-popup-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(15, 23, 42, 0.05);
+  color: #64748b;
+  font-size: 24px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+}
+
+.france-map-3d-popup-close:hover {
+  background: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+  transform: rotate(90deg);
+}
+
+/* Titre du pop-up */
+.france-map-3d-popup-title {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Sous-titre */
+.france-map-3d-popup-subtitle {
+  margin: 0 0 24px 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #4f46e5;
+  letter-spacing: -0.01em;
+}
+
+/* Texte du pop-up */
+.france-map-3d-popup-text {
+  margin: 0 0 32px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.france-map-3d-popup-text strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Bouton CTA */
+.france-map-3d-popup-cta {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 8px 24px rgba(79, 70, 229, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  letter-spacing: -0.01em;
+}
+
+.france-map-3d-popup-cta:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+  box-shadow:
+    0 12px 32px rgba(79, 70, 229, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.france-map-3d-popup-cta:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 16px rgba(79, 70, 229, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .france-map-3d-container {
+    padding: 10px;
+  }
+
+  .france-map-3d-wrapper {
+    padding: 20px 10px;
+    border-radius: 16px;
+  }
+
+  .france-map-3d-popup-content {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+
+  .france-map-3d-popup-title {
+    font-size: 24px;
+  }
+
+  .france-map-3d-popup-subtitle {
+    font-size: 16px;
+  }
+
+  .france-map-3d-popup-text {
+    font-size: 15px;
+  }
+
+  .france-map-3d-popup-cta {
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .france-map-3d-popup-content {
+    padding: 24px 20px;
+  }
+
+  .france-map-3d-popup-title {
+    font-size: 22px;
+  }
+
+  .france-map-dept {
+    stroke-width: 1;
+  }
+}
+</style>
+
+<script>
+(function() {
+  'use strict';
+
+  // ==============================================
+  // DONNÉES DES DÉPARTEMENTS ET VILLES PRINCIPALES
+  // ==============================================
+
+  const grandesVilles = {
+    "01": { departement: "Ain", ville: "Bourg-en-Bresse" },
+    "02": { departement: "Aisne", ville: "Saint-Quentin" },
+    "03": { departement: "Allier", ville: "Montluçon" },
+    "04": { departement: "Alpes-de-Haute-Provence", ville: "Digne-les-Bains" },
+    "05": { departement: "Hautes-Alpes", ville: "Gap" },
+    "06": { departement: "Alpes-Maritimes", ville: "Nice" },
+    "07": { departement: "Ardèche", ville: "Privas" },
+    "08": { departement: "Ardennes", ville: "Charleville-Mézières" },
+    "09": { departement: "Ariège", ville: "Foix" },
+    "10": { departement: "Aube", ville: "Troyes" },
+    "11": { departement: "Aude", ville: "Narbonne" },
+    "12": { departement: "Aveyron", ville: "Rodez" },
+    "13": { departement: "Bouches-du-Rhône", ville: "Marseille" },
+    "14": { departement: "Calvados", ville: "Caen" },
+    "15": { departement: "Cantal", ville: "Aurillac" },
+    "16": { departement: "Charente", ville: "Angoulême" },
+    "17": { departement: "Charente-Maritime", ville: "La Rochelle" },
+    "18": { departement: "Cher", ville: "Bourges" },
+    "19": { departement: "Corrèze", ville: "Brive-la-Gaillarde" },
+    "2A": { departement: "Corse-du-Sud", ville: "Ajaccio" },
+    "2B": { departement: "Haute-Corse", ville: "Bastia" },
+    "21": { departement: "Côte-d'Or", ville: "Dijon" },
+    "22": { departement: "Côtes-d'Armor", ville: "Saint-Brieuc" },
+    "23": { departement: "Creuse", ville: "Guéret" },
+    "24": { departement: "Dordogne", ville: "Périgueux" },
+    "25": { departement: "Doubs", ville: "Besançon" },
+    "26": { departement: "Drôme", ville: "Valence" },
+    "27": { departement: "Eure", ville: "Évreux" },
+    "28": { departement: "Eure-et-Loir", ville: "Chartres" },
+    "29": { departement: "Finistère", ville: "Brest" },
+    "30": { departement: "Gard", ville: "Nîmes" },
+    "31": { departement: "Haute-Garonne", ville: "Toulouse" },
+    "32": { departement: "Gers", ville: "Auch" },
+    "33": { departement: "Gironde", ville: "Bordeaux" },
+    "34": { departement: "Hérault", ville: "Montpellier" },
+    "35": { departement: "Ille-et-Vilaine", ville: "Rennes" },
+    "36": { departement: "Indre", ville: "Châteauroux" },
+    "37": { departement: "Indre-et-Loire", ville: "Tours" },
+    "38": { departement: "Isère", ville: "Grenoble" },
+    "39": { departement: "Jura", ville: "Lons-le-Saunier" },
+    "40": { departement: "Landes", ville: "Mont-de-Marsan" },
+    "41": { departement: "Loir-et-Cher", ville: "Blois" },
+    "42": { departement: "Loire", ville: "Saint-Étienne" },
+    "43": { departement: "Haute-Loire", ville: "Le Puy-en-Velay" },
+    "44": { departement: "Loire-Atlantique", ville: "Nantes" },
+    "45": { departement: "Loiret", ville: "Orléans" },
+    "46": { departement: "Lot", ville: "Cahors" },
+    "47": { departement: "Lot-et-Garonne", ville: "Agen" },
+    "48": { departement: "Lozère", ville: "Mende" },
+    "49": { departement: "Maine-et-Loire", ville: "Angers" },
+    "50": { departement: "Manche", ville: "Cherbourg-en-Cotentin" },
+    "51": { departement: "Marne", ville: "Reims" },
+    "52": { departement: "Haute-Marne", ville: "Chaumont" },
+    "53": { departement: "Mayenne", ville: "Laval" },
+    "54": { departement: "Meurthe-et-Moselle", ville: "Nancy" },
+    "55": { departement: "Meuse", ville: "Verdun" },
+    "56": { departement: "Morbihan", ville: "Lorient" },
+    "57": { departement: "Moselle", ville: "Metz" },
+    "58": { departement: "Nièvre", ville: "Nevers" },
+    "59": { departement: "Nord", ville: "Lille" },
+    "60": { departement: "Oise", ville: "Beauvais" },
+    "61": { departement: "Orne", ville: "Alençon" },
+    "62": { departement: "Pas-de-Calais", ville: "Calais" },
+    "63": { departement: "Puy-de-Dôme", ville: "Clermont-Ferrand" },
+    "64": { departement: "Pyrénées-Atlantiques", ville: "Pau" },
+    "65": { departement: "Hautes-Pyrénées", ville: "Tarbes" },
+    "66": { departement: "Pyrénées-Orientales", ville: "Perpignan" },
+    "67": { departement: "Bas-Rhin", ville: "Strasbourg" },
+    "68": { departement: "Haut-Rhin", ville: "Mulhouse" },
+    "69": { departement: "Rhône", ville: "Lyon" },
+    "70": { departement: "Haute-Saône", ville: "Vesoul" },
+    "71": { departement: "Saône-et-Loire", ville: "Chalon-sur-Saône" },
+    "72": { departement: "Sarthe", ville: "Le Mans" },
+    "73": { departement: "Savoie", ville: "Chambéry" },
+    "74": { departement: "Haute-Savoie", ville: "Annecy" },
+    "75": { departement: "Paris", ville: "Paris" },
+    "76": { departement: "Seine-Maritime", ville: "Le Havre" },
+    "77": { departement: "Seine-et-Marne", ville: "Meaux" },
+    "78": { departement: "Yvelines", ville: "Versailles" },
+    "79": { departement: "Deux-Sèvres", ville: "Niort" },
+    "80": { departement: "Somme", ville: "Amiens" },
+    "81": { departement: "Tarn", ville: "Albi" },
+    "82": { departement: "Tarn-et-Garonne", ville: "Montauban" },
+    "83": { departement: "Var", ville: "Toulon" },
+    "84": { departement: "Vaucluse", ville: "Avignon" },
+    "85": { departement: "Vendée", ville: "La Roche-sur-Yon" },
+    "86": { departement: "Vienne", ville: "Poitiers" },
+    "87": { departement: "Haute-Vienne", ville: "Limoges" },
+    "88": { departement: "Vosges", ville: "Épinal" },
+    "89": { departement: "Yonne", ville: "Auxerre" },
+    "90": { departement: "Territoire de Belfort", ville: "Belfort" },
+    "91": { departement: "Essonne", ville: "Évry-Courcouronnes" },
+    "92": { departement: "Hauts-de-Seine", ville: "Boulogne-Billancourt" },
+    "93": { departement: "Seine-Saint-Denis", ville: "Saint-Denis" },
+    "94": { departement: "Val-de-Marne", ville: "Créteil" },
+    "95": { departement: "Val-d'Oise", ville: "Cergy" },
+    "971": { departement: "Guadeloupe", ville: "Les Abymes" },
+    "972": { departement: "Martinique", ville: "Fort-de-France" },
+    "973": { departement: "Guyane", ville: "Cayenne" },
+    "974": { departement: "La Réunion", ville: "Saint-Denis" },
+    "976": { departement: "Mayotte", ville: "Mamoudzou" }
+  };
+
+  // ==============================================
+  // FONCTION POUR GÉNÉRER LE SLUG SEO
+  // ==============================================
+
+  function generateSlug(text) {
+    return text
+      .toString()
+      .toLowerCase()
+      .normalize('NFD') // Décompose les caractères accentués
+      .replace(/[\u0300-\u036f]/g, '') // Supprime les accents
+      .replace(/[^a-z0-9\s-]/g, '') // Supprime les caractères spéciaux
+      .trim()
+      .replace(/\s+/g, '-') // Remplace les espaces par des tirets
+      .replace(/-+/g, '-'); // Supprime les tirets multiples
+  }
+
+  // ==============================================
+  // GESTION DU POP-UP
+  // ==============================================
+
+  const popup = document.getElementById('franceMapPopup');
+  const popupTitle = document.getElementById('popupTitle');
+  const popupSubtitle = document.getElementById('popupSubtitle');
+  const popupCTA = document.getElementById('popupCTA');
+  const popupClose = document.getElementById('popupClose');
+
+  // Fonction pour ouvrir le pop-up
+  function openPopup(deptNumber) {
+    const deptData = grandesVilles[deptNumber];
+
+    if (!deptData) {
+      console.error('Département non trouvé:', deptNumber);
+      return;
+    }
+
+    // Remplir le contenu du pop-up
+    popupTitle.textContent = deptData.departement;
+    popupSubtitle.textContent = deptData.ville;
+
+    // Générer le slug et l'URL
+    const villeSlug = generateSlug(deptData.ville);
+    const targetUrl = '/preparateur-mental-ville/' + villeSlug + '/';
+
+    // Configurer le bouton CTA
+    popupCTA.onclick = function() {
+      window.location.href = targetUrl;
+    };
+
+    // Afficher le pop-up
+    popup.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Empêche le scroll
+  }
+
+  // Fonction pour fermer le pop-up
+  function closePopup() {
+    popup.classList.remove('active');
+    document.body.style.overflow = ''; // Réactive le scroll
+  }
+
+  // ==============================================
+  // ÉVÉNEMENTS
+  // ==============================================
+
+  // Ajouter les événements de clic sur chaque département
+  const departments = document.querySelectorAll('.france-map-dept');
+  departments.forEach(function(dept) {
+    dept.addEventListener('click', function(e) {
+      e.preventDefault();
+      const deptNumber = this.getAttribute('data-dept');
+      openPopup(deptNumber);
+    });
+  });
+
+  // Fermer le pop-up en cliquant sur le bouton de fermeture
+  popupClose.addEventListener('click', closePopup);
+
+  // Fermer le pop-up en cliquant à l'extérieur
+  popup.addEventListener('click', function(e) {
+    if (e.target === popup) {
+      closePopup();
+    }
+  });
+
+  // Fermer le pop-up avec la touche Échap
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && popup.classList.contains('active')) {
+      closePopup();
+    }
+  });
+
+  // ==============================================
+  // COMPATIBILITÉ ELEMENTOR
+  // ==============================================
+
+  // S'assurer que le script fonctionne même après rechargement Elementor
+  if (window.elementorFrontend) {
+    window.elementorFrontend.hooks.addAction('frontend/element_ready/widget', function() {
+      // Le code est déjà initialisé ci-dessus
+      console.log('Carte de France 3D initialisée');
+    });
+  }
+
+})();
+</script>
